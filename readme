@@ -1,0 +1,16 @@
+//  cerate the route
+
+//  sterp-1 : create the server
+
+//  step-2 : crete the models  by ising mongoose
+
+//  step-3 : cretae the contreoller for( handelingcreateshortid)
+
+//  step-4 : crete the route folder and url.routes.js to redirect all
+//  the request which are coming by /url
+
+
+//  step-5 : create the connection with mongodb 
+ 
+
+//  step -6 crete the route for /:short_id
