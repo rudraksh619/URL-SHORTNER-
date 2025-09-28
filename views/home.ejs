@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+        body {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+    </style>
+</head>
+<body>
+   <h1>URL SHORTNER</h1>
+
+   <form method="post" action="/url">
+    <label >Enter you URL</label>
+    <input type="text" name="url" , placeholder="http://example.com">
+    <button type="submit">Get ShortId</button>
+   </form>
+
+   <% if (locals.short_id) { %>
+    <p> URL-Genrated : http://localhost:8000/<%- short_id %></p>
+   <% } %>
+
+   <% if (locals.allurls) { %>
+    <table>
+        <thead>
+            <th>s.No</th>
+            <th>redirecturl</th>
+            <th>ShortId</th>
+            <th>Clicks</th>
+        </thead>
+        <% allurls.forEach((url , indx) => { %>
+          <tbody>
+            <tr>
+                <td><%= indx %></td>
+            <td><%= url.redirectUrl %></td>
+            <td><%= url.shortId %></td>
+            <td><%= url.visit.length %></td>
+            </tr>
+            
+        </tbody>
+        <% }) %>
+       
+    </table>
+   <% } %>
+
+</body>
+</html>

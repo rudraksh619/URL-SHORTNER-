@@ -3,7 +3,14 @@ const { nanoid } = require("nanoid");
 
 
 async function handleCreteShortId(req, res) {
+  
   const body = req.body;
+
+  console.log("bodt data is" , req.body);
+  
+  if(!body){
+    res.status(200).send("yeh i am here");
+  }
   const id = nanoid(8);
 
   console.log("short id is ", id);
@@ -14,6 +21,7 @@ async function handleCreteShortId(req, res) {
       redirectUrl: body.url,
       visit: [],
     });
+    return res.status(200).render("home" , {short_id : id})
     return res.status(200).json({ short_id : id});
   } catch (error) {
     res.status(400).send("someting went wrong plx try again");

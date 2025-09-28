@@ -1,43 +1,30 @@
 const express = require("express");
 const router = require("./routes/url-routes");
 const handleMongoconnection = require("./connect");
+
+const static_router  = require("./routes/staticRouter") 
+
 const URL = require("./models/url");
+const path = require("path")
 
 const app = express();
 app.use(express.json());
+app.use(express.urlencoded({extended:false}))
 const port = 8000;
 
 const monngourl = "mongodb://localhost:27017/short-url"
 handleMongoconnection(monngourl)
 .then(()=> console.log("monogodb is connnected"));
 
+app.set("view engine", "ejs");
+app.set("views",path.resolve("./views"))
+
 
 app.use("/url" , router)
 
-// app.use("/:short_id" , async (req,res)=>{
-//     const shortId =  req.params.short_id ;
 
-//     console.log("short id is" , shortId);
+app.use("/" , static_router)
 
-//    const data =  await URL.findOneAndUpdate({
-//         shortId
-//     },{
-//         $push : {
-//             visit : {
-//                 timestamp : 
-//                     Date.now()
-                
-//             }
-//         }
-//     },
-// {new:true})
-
-//     console.log("updated data", data);
-
-//     res.redirect(data.redirectUrl);
-
-
-// })
 
 app.use("/analytics/:shortid" , async (req,res)=>{
     const id = req.params.shortid;

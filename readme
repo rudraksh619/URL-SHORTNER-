@@ -14,3 +14,7 @@
  
 
 //  step -6 crete the route for /:short_id
+
+
+//  for server side rendering we are using ejs  although we can use pug but we go
+// ejs  
