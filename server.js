@@ -3,13 +3,16 @@ const router = require("./routes/url-routes");
 const handleMongoconnection = require("./connect");
 
 const static_router  = require("./routes/staticRouter") 
-
+const cookieParser = require("cookie-parser")
 const URL = require("./models/url");
-const path = require("path")
+const path = require("path");
+const User_router = require("./routes/userRoute");
+const checkauthentication = require("./middleware/url");
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended:false}))
+app.use(cookieParser())
 const port = 8000;
 
 const monngourl = "mongodb://localhost:27017/short-url"
@@ -20,10 +23,9 @@ app.set("view engine", "ejs");
 app.set("views",path.resolve("./views"))
 
 
-app.use("/url" , router)
-
-
+app.use("/url" , checkauthentication , router)
 app.use("/" , static_router)
+app.use("/user", User_router);
 
 
 app.use("/analytics/:shortid" , async (req,res)=>{

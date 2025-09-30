@@ -18,3 +18,6 @@
 
 //  for server side rendering we are using ejs  although we can use pug but we go
 // ejs  
+
+
+//   always add retuurn  statement when you are seding any response 
